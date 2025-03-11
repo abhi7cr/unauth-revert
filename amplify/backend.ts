@@ -19,11 +19,11 @@ cfnUserPool.policies = {
         temporaryPasswordValidityDays: 7
     }
 };
-// cfnUserPool.applyRemovalPolicy(RemovalPolicy.RETAIN, { applyToUpdateReplacePolicy: true })
+cfnUserPool.applyRemovalPolicy(RemovalPolicy.RETAIN, { applyToUpdateReplacePolicy: true })
 const cfnIdentityPool = backend.auth.resources.cfnResources.cfnIdentityPool;
 cfnIdentityPool.identityPoolName = `testunauth587e54b1_identitypool_587e54b1__${AMPLIFY_GEN_1_ENV_NAME}`;
 cfnIdentityPool.allowUnauthenticatedIdentities = false;
-// cfnIdentityPool.applyRemovalPolicy(RemovalPolicy.RETAIN, { applyToUpdateReplacePolicy: true })
+cfnIdentityPool.applyRemovalPolicy(RemovalPolicy.RETAIN, { applyToUpdateReplacePolicy: true })
 const userPool = backend.auth.resources.userPool;
 userPool.addClient("NativeAppClient", {
     disableOAuth: true,
@@ -34,4 +34,4 @@ userPool.addClient("NativeAppClient", {
     refreshTokenValidity: Duration.days(30),
     generateSecret: false
 });
-// Tags.of(backend.stack).add("gen1-migrated-app", "true");
+Tags.of(backend.stack).add("gen1-migrated-app", "true");
